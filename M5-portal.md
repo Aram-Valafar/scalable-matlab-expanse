@@ -13,7 +13,7 @@ compute-intensive work belongs in batch jobs (M2–M4).
 ### Step 1: Open the portal and launch MATLAB
 > **[Expanse-specific]**
 
-Go to https://portal.expanse.sdsc.edu and click **MATLAB**.
+Go to https://portal.expanse.sdsc.edu → **Interactive Apps** → **MATLAB**.
 
 ### Step 2: Configure the session
 > **[Expanse-specific]**
@@ -70,9 +70,9 @@ From the Expanse Shell Access (a separate portal app) or any shell on Expanse:
 ls -lh ~/portal_test.png
 ```
 
-**Expected output:**
+**Expected output** (your username and file size will differ):
 ```
--rw-r--r-- 1 avalafar sds196 20K <date> /home/avalafar/portal_test.png
+-rw-r--r-- 1 <username> sds196 <size> <date> /home/<username>/portal_test.png
 ```
 
 ### Step 6: Remember the rule

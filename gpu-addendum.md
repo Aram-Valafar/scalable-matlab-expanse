@@ -5,11 +5,18 @@ Read M1–M4 first. **Setup:** [Clone the repo to Expanse first](README.md#getti
 
 ---
 
-## CPU Baseline Job
+## Steps
 
+### Step 1: Submit a CPU baseline job
 > **[Expanse-specific]** for account/partition; **[Portable]** for MATLAB code
 
-Use `scripts/at5_cpu.sh` + `scripts/at5_ann.m`. Key settings:
+Submit the CPU version to establish a baseline:
+
+```bash
+sbatch ~/scalable-matlab-expanse/scripts/at5_cpu.sh
+```
+
+This uses `scripts/at5_cpu.sh` + `scripts/at5_ann.m`. Key settings:
 
 ```bash
 #SBATCH --partition=shared
@@ -19,13 +26,16 @@ Use `scripts/at5_cpu.sh` + `scripts/at5_ann.m`. Key settings:
 
 No `--gpus` flag. MATLAB detects no GPU and trains on CPU automatically.
 
----
-
-## Single-GPU Job
-
+### Step 2: Submit a single-GPU job
 > **[Expanse-specific]**
 
-Use `scripts/at5_gpu.sh`. Key settings:
+Submit the GPU version using the same `.m` file:
+
+```bash
+sbatch ~/scalable-matlab-expanse/scripts/at5_gpu.sh
+```
+
+This uses `scripts/at5_gpu.sh`. Key settings:
 
 ```bash
 #SBATCH --partition=gpu-shared
@@ -43,18 +53,29 @@ module load cpu/0.15.4     # required even on GPU nodes
 module load matlab/2022a
 ```
 
+### Step 3: Compare outputs
+> **[Portable]**
+
+Check the output files from both jobs:
+
+```bash
+cat at5_cpu_<your_job_id>.out
+cat at5_gpu_<your_job_id>.out
+```
+
+The GPU job should show `AT5: GPU detected` and train with `(gpu)` execution environment.
+The CPU job should show `AT5: No GPU detected` and train with `(cpu)`.
+
 ---
 
-## GPU Verification Checklist
+## Pass/Fail Check
 
-After your GPU job completes, confirm:
+- ✅ **PASS (GPU):** Output contains `AT5: GPU detected` and training table shows `(gpu)` execution environment
+- ✅ **PASS (CPU):** Output contains `AT5: No GPU detected` and training completes on CPU
+- ❌ **FAIL — No GPU detected on GPU node:** Confirm `--partition=gpu-shared` and `--gpus=1` are set in your sbatch script
+- ❌ **FAIL — module error:** Confirm you used `cpu/0.15.4` (not `gpu/0.15.4`) as the prerequisite
 
-- [ ] Output contains `AT5: GPU detected` (not `No GPU detected`)
-- [ ] GPU name: `Tesla V100-SXM2-32GB` (on Expanse `gpu-shared`)
-- [ ] Available memory: `33.55 GB`
-- [ ] Training table header shows `(gpu)` execution environment
-
-**Expected output snippet:**
+**Expected GPU output snippet** (GPU model may vary by node; V100 is typical on Expanse `gpu-shared`):
 ```
 AT5: GPU detected — Tesla V100-SXM2-32GB
 AT5: GPU available memory: 33.55 GB

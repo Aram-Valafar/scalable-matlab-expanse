@@ -15,7 +15,7 @@ job — the foundation for all batch workflows in M3 and M4.
 From the login node, request an interactive session on a compute node:
 
 ```bash
-srun --account=sds196 --partition=shared --nodes=1 --ntasks=1 \
+srun --account=sds196 --partition=shared --nodes=1 --ntasks=1 \  # replace sds196 with your allocation
      --cpus-per-task=1 --mem=4G --time=00:30:00 --pty bash
 ```
 
@@ -71,5 +71,7 @@ This releases the compute node and returns you to the login node.
 - ✅ **PASS:** `matlab -batch "disp(version)"` prints `9.12.0.1884302 (R2022a)` on the compute node
 - ❌ **FAIL — srun hangs:** The partition may be busy. Check with `squeue -u $USER` or try again shortly
 - ❌ **FAIL — module error:** Confirm you ran `module load cpu/0.15.4` before `module load matlab/2022a`
+
+> **See also:** `scripts/at1_sanity.sh` for a batch-submitted version of this sanity check.
 
 **Next:** [M3 — Scalable Job Arrays](M3-arrays.md)

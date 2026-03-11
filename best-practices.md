@@ -24,7 +24,7 @@ module load matlab/2022a
 > **[Expanse-specific]** for account/partition; **[Portable]** for the pattern
 
 ```bash
-srun --account=sds196 \
+srun --account=sds196 \     # replace sds196 with your allocation
      --partition=shared \
      --nodes=1 --ntasks=1 \
      --cpus-per-task=1 --mem=4G \
@@ -72,7 +72,7 @@ matlab -batch "run('$HOME/my_sweep.m')"
 # Aggregate and copy back [Portable]
 OUTDIR=$HOME/results
 mkdir -p $OUTDIR
-tar -czf $OUTDIR/sweep_${SLURM_JOB_ID}_task_${SLURM_ARRAY_TASK_ID}.tar.gz \
+tar -czf $OUTDIR/sweep_${SLURM_JOBID}_task_${SLURM_ARRAY_TASK_ID}.tar.gz \
     -C $WORKDIR .
 
 # Clean up [Portable]

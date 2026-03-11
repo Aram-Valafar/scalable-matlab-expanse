@@ -21,21 +21,24 @@ degrade performance for all users. The fix: write intermediates to `$TMPDIR`
 ### Step 1: Find your scratch directory
 > **[Expanse-specific]**
 
-Slurm pre-creates a per-job scratch directory:
+Inside a running Slurm job (not on the login node), Slurm pre-creates a per-job scratch directory:
 
 ```bash
 echo $TMPDIR
 ```
 
-**Expected output:**
+**Expected output** (your username and job ID will differ):
 ```
-/scratch/avalafar/job_46860107
+/scratch/<username>/job_<jobid>
 ```
 
 This directory exists for the lifetime of your job and is automatically cleaned up.
 
 ### Step 2: Write intermediates to scratch, not home
 > **[Portable]**
+
+> **Portability note:** On non-Expanse systems, the per-job scratch variable may be
+> `$SCRATCH` or `$LOCAL_SCRATCH` instead of `$TMPDIR`. Check your site's documentation.
 
 In your sbatch script, set `WORKDIR` from `$TMPDIR`:
 
@@ -99,9 +102,13 @@ verified example. After [cloning the repo](README.md#getting-started), submit fr
 sbatch ~/scalable-matlab-expanse/scripts/at3_io.sh
 ```
 
+> **Note:** The provided script writes to `~/at3_results/` (not `~/results/` as in the
+> generic example above). Adjust the path in the pass/fail check accordingly if you
+> write your own script.
+
 ## Pass/Fail Check
 
-- ✅ **PASS:** `tar -tzf ~/results/checkpoints_<jobid>.tar.gz` lists all expected files; no individual `.mat` files exist in `$HOME`
+- ✅ **PASS:** `tar -tzf ~/at3_results/checkpoints_<jobid>.tar.gz` lists all expected files; no individual `.mat` files exist in `$HOME`
 - ❌ **FAIL — WORKDIR not set:** Confirm `export WORKDIR` appears in the sbatch script before `matlab -batch`
 - ❌ **FAIL — tar empty:** Confirm MATLAB actually wrote files by checking `ls $WORKDIR` before the tar step (add `echo` statements to debug)
 

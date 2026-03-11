@@ -23,18 +23,20 @@ browser-based terminal on a login node. (SSH also works once your key is configu
 groups
 ```
 
-**Expected output:**
+**Expected output** (other groups may also appear):
 ```
-sds196
+sds196 ...
 ```
 
-This is the account name you will pass to every `sbatch` and `srun` command with `-A sds196`.
+Your output should include `sds196` — this is the account name you will pass to every `sbatch` and `srun` command with `-A sds196`.
 
 Also check your home directory quota:
 
 ```bash
 quota -s
 ```
+
+Confirm your home usage is well below the limit (typically 100 GB on Expanse).
 
 ### Step 3: Load MATLAB
 > **[Expanse-specific]**
@@ -78,7 +80,7 @@ matlab -batch "disp(version)"
 | Open MATLAB and run a script | `matlab -batch "run('~/my_script.m')"` |
 | Run a one-liner | `matlab -batch "disp(version)"` |
 | Check GPU availability | `matlab -batch "disp(gpuDeviceCount)"` |
-| Generate and save a plot | `saveas(gcf, fullfile(getenv('HOME'), 'plot.png'))` inside a `.m` file |
+| Generate and save a plot | Put `saveas(gcf, fullfile(getenv('HOME'), 'plot.png'))` in a `.m` file, then run with `matlab -batch "run('$HOME/plot_script.m')"` |
 | Check a variable | Use `fprintf` or `disp` — no interactive workspace in `-batch` mode |
 
 **Key `-batch` rules:**

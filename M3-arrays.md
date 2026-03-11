@@ -47,14 +47,14 @@ fprintf('Task %d running\n', task_id);
 > **[Expanse-specific]**
 
 ```bash
-sbatch scripts/at2_array.sh
+sbatch ~/scalable-matlab-expanse/scripts/at2_array.sh
 ```
 
-Slurm returns a single job ID (e.g., `46860050`). All 5 tasks run under this ID
-as `46860050_1` through `46860050_5`.
+Slurm returns a single job ID (e.g., `12345678`). All 5 tasks run under this ID
+as `12345678_1` through `12345678_5`.
 
 ### Step 4: Monitor progress
-> **[Expanse-specific]**
+> **[Portable]**
 
 ```bash
 squeue -u $USER
@@ -65,26 +65,30 @@ You will see each task listed separately with its own node assignment.
 ### Step 5: Verify all tasks completed
 > **[Portable]**
 
+Replace `<your_job_id>` with the ID that `sbatch` printed:
+
 ```bash
-sacct -j 46860050 --format=JobID,State
+sacct -j <your_job_id> --format=JobID,State
 ```
 
-**Expected output:**
+**Expected output** (your job ID will differ):
 ```
 JobID             State
 ------------ ----------
-46860050_1    COMPLETED
-46860050_2    COMPLETED
-46860050_3    COMPLETED
-46860050_4    COMPLETED
-46860050_5    COMPLETED
+<jobid>_1     COMPLETED
+<jobid>_2     COMPLETED
+<jobid>_3     COMPLETED
+<jobid>_4     COMPLETED
+<jobid>_5     COMPLETED
 ```
 
 ### Step 6: Check per-task outputs
 > **[Portable]**
 
+Output files are created in the directory where you ran `sbatch`. Replace `<your_job_id>` with your job ID:
+
 ```bash
-cat at2_46860050_*.out
+cat at2_<your_job_id>_*.out
 ```
 
 **Expected output:**

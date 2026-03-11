@@ -17,6 +17,9 @@ Beginner-safe micro-guides for running MATLAB on the Expanse HPC cluster for AI/
 | MATLAB Version | 2022a |
 | Portal | https://portal.expanse.sdsc.edu |
 
+> **Note:** If your allocation account differs from `sds196`, replace it in all
+> `--account=` flags and scripts throughout these guides.
+
 ## Guide Map
 
 | Guide | Title | Time |
@@ -45,9 +48,9 @@ All guides reference scripts in the `scripts/` directory — this clone puts the
 ### 2. Verify your access
 
 ```bash
-groups                        # should show sds196
-module load cpu/0.15.4 && module load matlab/2022a
-matlab -batch "disp(version)" # should print 9.12.0.1884302 (R2022a)
+groups                        # should include sds196 (among other groups)
+module purge && module load cpu/0.15.4 && module load matlab/2022a
+matlab -batch "disp(version)" # should print 9.12.0.1884302 (R2022a) — fine on login node for a quick check
 ```
 
 ## Tag Legend
