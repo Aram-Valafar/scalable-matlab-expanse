@@ -1,6 +1,6 @@
 # M4: Storage & I/O Patterns
 
-**Time:** ~15 min | **Prerequisites:** [M2](M2-interactive-cli.md)
+**Time:** ~15 min | **Prerequisites:** [M2](M2-interactive-cli.md) | **Setup:** [Clone the repo to Expanse first](README.md#getting-started)
 
 ## What you'll do
 

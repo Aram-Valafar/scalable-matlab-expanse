@@ -29,9 +29,20 @@ Beginner-safe micro-guides for running MATLAB on the Expanse HPC cluster for AI/
 | [Best Practices](best-practices.md) | One-Pager Reference | — |
 | [GPU Addendum](gpu-addendum.md) | GPU & AI Workflows | — |
 
-## Quick Start
+## Getting Started
 
-Run these three commands from the portal shell to verify your access:
+### 1. Clone this repo to Expanse
+
+From the [portal shell](https://portal.expanse.sdsc.edu) (Expanse Shell Access):
+
+```bash
+git clone https://github.com/Aram-Valafar/scalable-matlab-expanse.git ~/scalable-matlab-expanse
+cd ~/scalable-matlab-expanse
+```
+
+All guides reference scripts in the `scripts/` directory — this clone puts them on Expanse where you can run them.
+
+### 2. Verify your access
 
 ```bash
 groups                        # should show sds196

@@ -1,7 +1,7 @@
 # GPU & AI Workflow Addendum
 
 Lightweight reference for running MATLAB Deep Learning Toolbox jobs on Expanse GPUs.
-Read M1–M4 first.
+Read M1–M4 first. **Setup:** [Clone the repo to Expanse first](README.md#getting-started) — scripts referenced below live in `scripts/`.
 
 ---
 
