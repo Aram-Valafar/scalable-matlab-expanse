@@ -15,7 +15,8 @@ job — the foundation for all batch workflows in M3 and M4.
 From the login node, request an interactive session on a compute node:
 
 ```bash
-srun --account=sds196 --partition=shared --nodes=1 --ntasks=1 \  # replace sds196 with your allocation
+# replace sds196 with your allocation
+srun --account=sds196 --partition=shared --nodes=1 --ntasks=1 \
      --cpus-per-task=1 --mem=4G --time=00:30:00 --pty bash
 ```
 

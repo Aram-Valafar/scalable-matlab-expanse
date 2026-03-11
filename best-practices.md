@@ -24,7 +24,8 @@ module load matlab/2022a
 > **[Expanse-specific]** for account/partition; **[Portable]** for the pattern
 
 ```bash
-srun --account=sds196 \     # replace sds196 with your allocation
+# replace sds196 with your allocation
+srun --account=sds196 \
      --partition=shared \
      --nodes=1 --ntasks=1 \
      --cpus-per-task=1 --mem=4G \

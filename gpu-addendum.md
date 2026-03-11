@@ -56,7 +56,7 @@ module load matlab/2022a
 ### Step 3: Compare outputs
 > **[Portable]**
 
-Check the output files from both jobs:
+Output files are created in the directory where you ran `sbatch`. Check both:
 
 ```bash
 cat at5_cpu_<your_job_id>.out

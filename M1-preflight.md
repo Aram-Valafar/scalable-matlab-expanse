@@ -77,7 +77,7 @@ matlab -batch "disp(version)"
 
 | GUI action | CLI / batch equivalent |
 |---|---|
-| Open MATLAB and run a script | `matlab -batch "run('~/my_script.m')"` |
+| Open MATLAB and run a script | `matlab -batch "run('$HOME/my_script.m')"` |
 | Run a one-liner | `matlab -batch "disp(version)"` |
 | Check GPU availability | `matlab -batch "disp(gpuDeviceCount)"` |
 | Generate and save a plot | Put `saveas(gcf, fullfile(getenv('HOME'), 'plot.png'))` in a `.m` file, then run with `matlab -batch "run('$HOME/plot_script.m')"` |
@@ -87,7 +87,7 @@ matlab -batch "disp(version)"
 - No GUI windows open
 - No keyboard input accepted
 - Exit code 0 = success, non-zero = error (Slurm will mark job FAILED)
-- Always put multi-line logic in a `.m` file; call it with `run('~/script.m')`
+- Always put multi-line logic in a `.m` file; call it with `run('$HOME/script.m')`
 
 ## Pass/Fail Check
 
