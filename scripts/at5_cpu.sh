@@ -15,4 +15,4 @@ module load matlab/2022a
 
 export WORKDIR=$TMPDIR
 
-matlab -batch "run('$HOME/at5_ann.m')"
+matlab -batch "run('$HOME/scalable-matlab-expanse/scripts/at5_ann.m')"

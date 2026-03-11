@@ -93,15 +93,11 @@ rm -rf $WORKDIR
 > **[Expanse-specific]** for account/partition/scratch path; **[Portable]** for I/O pattern
 
 See `scripts/at3_io.sh` and `scripts/at3_work.m` in this repo for a complete,
-verified example using all steps above.
-
-Before submitting, copy the MATLAB script to your home directory on Expanse:
+verified example. After [cloning the repo](README.md#getting-started), submit from anywhere:
 
 ```bash
-cp scripts/at3_work.m ~/at3_work.m
+sbatch ~/scalable-matlab-expanse/scripts/at3_io.sh
 ```
-
-`at3_io.sh` calls `run('$HOME/at3_work.m')` — it expects the script in `$HOME`.
 
 ## Pass/Fail Check
 

@@ -25,7 +25,7 @@ echo "WORKDIR: $WORKDIR"
 export WORKDIR
 
 # Run MATLAB script from home directory
-matlab -batch "run('$HOME/at3_work.m')"
+matlab -batch "run('$HOME/scalable-matlab-expanse/scripts/at3_work.m')"
 
 # Aggregate all small checkpoint files into one tar before copy-back
 OUTDIR=$HOME/at3_results
