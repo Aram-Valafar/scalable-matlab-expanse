@@ -18,7 +18,7 @@ Beginner-safe micro-guides for running MATLAB on the Expanse HPC cluster for AI/
 | Portal | https://portal.expanse.sdsc.edu |
 
 > **Note:** If your allocation account differs from `sds196`, replace it in all
-> `--account=` flags and scripts throughout these guides.
+> `--account=` flags and edit the `.sh` files in `scripts/` before submitting jobs.
 
 ## Guide Map
 
@@ -43,7 +43,7 @@ git clone https://github.com/Aram-Valafar/scalable-matlab-expanse.git ~/scalable
 cd ~/scalable-matlab-expanse
 ```
 
-All guides reference scripts in the `scripts/` directory — this clone puts them on Expanse where you can run them.
+All guides assume this exact clone path (`~/scalable-matlab-expanse`). If you clone elsewhere, adjust `sbatch` paths accordingly.
 
 ### 2. Verify your access
 

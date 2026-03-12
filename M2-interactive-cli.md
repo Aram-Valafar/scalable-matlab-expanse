@@ -49,7 +49,7 @@ Exit code 0 confirms MATLAB is functional on this compute node.
 ### Step 4: Run a script with -batch
 > **[Portable]**
 
-Put your MATLAB logic in a `.m` file, then call it:
+Put your MATLAB logic in a `.m` file, then call it (replace `my_script.m` with your actual file):
 
 ```bash
 matlab -batch "run('$HOME/my_script.m')"

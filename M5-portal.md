@@ -22,7 +22,7 @@ Use these settings:
 
 | Field | Value |
 |---|---|
-| Account | `sds196` |
+| Account | `sds196` (or your allocation) |
 | Partition | `shared` |
 | Number of hours | `1` |
 | CPUs | `1` |

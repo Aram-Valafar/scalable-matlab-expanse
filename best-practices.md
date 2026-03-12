@@ -54,7 +54,7 @@ exit
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
-#SBATCH --time=01:00:00            # include ~10 min copy-back reserve
+#SBATCH --time=01:00:00            # include ~10 min reserve for tar + copy-back at end
 #SBATCH --array=1-20              # [Portable] one task per hyperparameter set
 #SBATCH --output=sweep_%A_%a.out  # [Portable]
 
@@ -68,7 +68,7 @@ mkdir -p $WORKDIR
 export WORKDIR
 
 # Run MATLAB [Portable]
-matlab -batch "run('$HOME/my_sweep.m')"
+matlab -batch "run('$HOME/my_sweep.m')"  # ← replace with your .m file
 
 # Aggregate and copy back [Portable]
 OUTDIR=$HOME/results

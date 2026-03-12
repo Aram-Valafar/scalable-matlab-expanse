@@ -30,7 +30,7 @@ Output files use `%A` (array job ID) and `%a` (task ID) to avoid overwriting:
 See `scripts/at2_array.sh` in this repo. Key lines:
 
 ```bash
-#SBATCH --account=sds196          # [Expanse-specific]
+#SBATCH --account=sds196          # [Expanse-specific] — edit if your allocation differs
 #SBATCH --partition=shared         # [Expanse-specific]
 #SBATCH --array=1-5               # [Portable]
 #SBATCH --output=at2_%A_%a.out    # [Portable]
@@ -40,11 +40,16 @@ MATLAB reads its task ID:
 
 ```matlab
 task_id = str2num(getenv('SLURM_ARRAY_TASK_ID'));
-fprintf('Task %d running\n', task_id);
+fprintf('AT2 task %d complete\n', task_id);
 ```
+
+> **Note:** Single-line MATLAB is fine inline in the shell command; use `.m` files
+> for multi-line logic (see M2 Step 4).
 
 ### Step 3: Submit the array
 > **[Expanse-specific]**
+
+From the login node (exit any `srun` session first):
 
 ```bash
 sbatch ~/scalable-matlab-expanse/scripts/at2_array.sh
@@ -71,7 +76,7 @@ Replace `<your_job_id>` with the ID that `sbatch` printed:
 sacct -j <your_job_id> --format=JobID,State
 ```
 
-**Expected output** (your job ID will differ):
+**Expected output** (your job ID will differ; you may also see `.batch` sub-step lines — these are normal):
 ```
 JobID             State
 ------------ ----------

@@ -28,7 +28,7 @@ groups
 sds196 ...
 ```
 
-Your output should include `sds196` — this is the account name you will pass to every `sbatch` and `srun` command with `-A sds196`.
+Your output should include `sds196` — this is the account name you will pass to every `sbatch` and `srun` command with `-A sds196` (replace with your allocation if different).
 
 Also check your home directory quota:
 

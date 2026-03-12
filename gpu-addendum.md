@@ -1,6 +1,7 @@
 # GPU & AI Workflow Addendum
 
 Lightweight reference for running MATLAB Deep Learning Toolbox jobs on Expanse GPUs.
+Requires: Deep Learning Toolbox (included in Expanse's `matlab/2022a` module).
 Read M1–M4 first. **Setup:** [Clone the repo to Expanse first](README.md#getting-started) — scripts referenced below live in `scripts/`.
 
 ---
@@ -53,6 +54,10 @@ module load cpu/0.15.4     # required even on GPU nodes
 module load matlab/2022a
 ```
 
+> **Note:** The example scripts save the model to `$TMPDIR` (node-local scratch),
+> which is cleaned up after the job ends. To keep your trained model, add a copy-back
+> step as shown in [M4](M4-io-patterns.md).
+
 ### Step 3: Compare outputs
 > **[Portable]**
 
@@ -75,7 +80,7 @@ The CPU job should show `AT5: No GPU detected` and train with `(cpu)`.
 - ❌ **FAIL — No GPU detected on GPU node:** Confirm `--partition=gpu-shared` and `--gpus=1` are set in your sbatch script
 - ❌ **FAIL — module error:** Confirm you used `cpu/0.15.4` (not `gpu/0.15.4`) as the prerequisite
 
-**Expected GPU output snippet** (GPU model may vary by node; V100 is typical on Expanse `gpu-shared`):
+**Expected GPU output snippet** (GPU model and memory will vary by node; V100 is typical on Expanse `gpu-shared`):
 ```
 AT5: GPU detected — Tesla V100-SXM2-32GB
 AT5: GPU available memory: 33.55 GB

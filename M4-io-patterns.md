@@ -18,6 +18,9 @@ degrade performance for all users. The fix: write intermediates to `$TMPDIR`
 
 ## Steps
 
+> Steps 1–4 explain the I/O pattern used inside a batch job. Step 5 provides a
+> ready-to-run script that implements it.
+
 ### Step 1: Find your scratch directory
 > **[Expanse-specific]**
 
@@ -111,5 +114,6 @@ sbatch ~/scalable-matlab-expanse/scripts/at3_io.sh
 - ✅ **PASS:** `tar -tzf ~/at3_results/checkpoints_<jobid>.tar.gz` lists all expected files; no individual `.mat` files exist in `$HOME`
 - ❌ **FAIL — WORKDIR not set:** Confirm `export WORKDIR` appears in the sbatch script before `matlab -batch`
 - ❌ **FAIL — tar empty:** Confirm MATLAB actually wrote files by checking `ls $WORKDIR` before the tar step (add `echo` statements to debug)
+- Check `at3_<jobid>.out` (in the directory where you ran `sbatch`) for error details
 
 **Next:** [M5 — Portal MATLAB](M5-portal.md)
